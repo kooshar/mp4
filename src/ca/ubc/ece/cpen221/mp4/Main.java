@@ -10,6 +10,7 @@ import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 import ca.ubc.ece.cpen221.mp4.staff.WorldImpl;
 import ca.ubc.ece.cpen221.mp4.staff.WorldUI;
+import ca.ubc.ece.cpen221.mp4.vehicles.Truck;
 
 /**
  * The Main class initialize a world with some {@link Grass}, {@link Rabbit}s,
@@ -60,7 +61,8 @@ public class Main {
 		addGnats(world);
 		addRabbits(world);
 		addFoxes(world);
-		addNukes(world);
+		addTrucks(world);
+		//addNukes(world);
 		// TODO: You may add your own creatures here!
 	}
 
@@ -108,4 +110,14 @@ public class Main {
             world.addActor(bomb);
         }
 	}
+	
+	private void addTrucks(World world){
+        TruckAI truckAI = new TruckAI();
+        for (int i = 0; i < INITIAL_TRUCKS; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            Truck truck = new Truck(truckAI, loc);
+            world.addItem(truck);
+            world.addActor(truck);
+        }
+    }
 }
