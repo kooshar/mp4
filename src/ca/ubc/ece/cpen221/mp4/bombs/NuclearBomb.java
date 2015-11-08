@@ -9,18 +9,23 @@ import ca.ubc.ece.cpen221.mp4.commands.BlowUpCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 
+
+/**
+ * 
+ * @author curtishuebner
+ * The Nuclear Bomb is intended to make all items on the board lose all of there energy.
+ */
 public class NuclearBomb extends Bomb {
     
     //TODO: change Image
-    private final ImageIcon NUCLEAR_BOMB_IMAGE = Util.loadImage("unknown.gif");
+    private final ImageIcon NUCLEAR_BOMB_IMAGE = Util.loadImage("bear.gif");
     private static final int NUCLEAR_BOMB_DAMAGE = Integer.MAX_VALUE;
     private static final int NUCLEAR_BOMB_BLAST_RADIUS = Integer.MAX_VALUE;
     private int remainingFuse;
-    private boolean hasDetonated;
     
     public NuclearBomb(Location location,int fuseDuration) {
         super(location);
-        hasDetonated = false;
+        super.hasDetonated = false;
         remainingFuse = fuseDuration;
     }
 
@@ -45,7 +50,7 @@ public class NuclearBomb extends Bomb {
 
     @Override
     public boolean isDead() {
-        return hasDetonated;
+        return super.hasDetonated;
     }
 
     @Override

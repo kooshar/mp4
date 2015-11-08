@@ -211,26 +211,13 @@ public final class Util {
 	 * @param Location b
 	 * @return the euclideanDistance
 	 */
-	private static double euclideanDistance(Location a, Location b){
+	public static double euclideanDistance(Location a, Location b){
 	    double deltaX = a.getX() - b.getX();
 	    double deltaY = a.getY() - b.getY();
 	    double out = Math.sqrt(deltaX*deltaX +deltaY*deltaY);
         return out;   
 	}
 
-	/**
-     * Returns the manhattanDistance between two locations
-     * defined as the shortest distance that needs to be covered in order to get from a to b
-     * by only taking steps along the x or y axes.
-     * @param Location a
-     * @param Location b
-     * @return the euclideanDistance
-     */
-    private static double mahattanDistance(Location a, Location b){
-        double deltaX = Math.abs(a.getX() - b.getX());
-        double deltaY = Math.abs(a.getY() - b.getY());
-        return deltaX+deltaY;
-    }
 	
 
 }

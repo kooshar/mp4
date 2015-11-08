@@ -2,8 +2,13 @@ package ca.ubc.ece.cpen221.mp4.commands;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.bombs.*;
+import ca.ubc.ece.cpen221.mp4.items.Item;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 /**
  * @author curtishuebner
@@ -24,10 +29,22 @@ public class BlowUpCommand implements Command {
         this.damage = damage;
     }
 
-
     @Override
     public void execute(World world) throws InvalidCommandException {
-        //TODO blowup the bomb
+        Iterable<Item> items = world.getItems();
+        List<Item> targets = new LinkedList<Item>();
+        
+        //select all items in the given blast radius
+        for (Item item : items) {
+            if(Util.euclideanDistance(item.getLocation(), location) < radius);
+                targets.add(item);
+        }
+        
+        //Inflict damage on targets
+        for (Item item : targets){
+            item.loseEnergy(damage);
+        }
+        
     }
 
 }

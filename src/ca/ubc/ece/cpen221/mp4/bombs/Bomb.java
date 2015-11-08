@@ -8,11 +8,17 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 
+
+/**
+ * 
+ * @author curtishuebner
+ * The bomb class encompasses all bombs
+ */
 public abstract class Bomb implements Actor, Item {
     
     private final int BOMB_CALORIES = 0;
     private final int BOMB_COOLDOWN_TIME = 1;
-    private boolean hasDetonated;
+    protected boolean hasDetonated;
     
     //Bombs are not allowed to move
     private final Location location;

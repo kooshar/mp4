@@ -3,6 +3,8 @@ package ca.ubc.ece.cpen221.mp4;
 import javax.swing.SwingUtilities;
 
 import ca.ubc.ece.cpen221.mp4.ai.*;
+import ca.ubc.ece.cpen221.mp4.bombs.Bomb;
+import ca.ubc.ece.cpen221.mp4.bombs.NuclearBomb;
 import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
@@ -34,6 +36,7 @@ public class Main {
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
 	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
 	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
+    static final int INITIAL_NUKES = 1;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -57,6 +60,7 @@ public class Main {
 		addGnats(world);
 		addRabbits(world);
 		addFoxes(world);
+		addNukes(world);
 		// TODO: You may add your own creatures here!
 	}
 
@@ -94,5 +98,14 @@ public class Main {
 			world.addItem(rabbit);
 			world.addActor(rabbit);
 		}
+	}
+	
+	private void addNukes(World world){
+	    for (int i = 0; i < INITIAL_NUKES; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            Bomb bomb = new NuclearBomb(Util.getRandomEmptyLocation(world),20);
+            world.addItem(bomb);
+            world.addActor(bomb);
+        }
 	}
 }
