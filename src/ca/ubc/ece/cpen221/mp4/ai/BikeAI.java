@@ -39,8 +39,8 @@ public class BikeAI extends AbstractVehicleAI {
     }
 
     private HashSet<Direction> getValidDirections(World world, Bike bike) {
-        int bikex = bike.getLocation().getX();
-        int bikey = bike.getLocation().getY();
+        int x = bike.getLocation().getX();
+        int y = bike.getLocation().getY();
 
         HashSet<Direction> validDirections = new HashSet<>();
         validDirections.add(Direction.EAST);
@@ -48,18 +48,18 @@ public class BikeAI extends AbstractVehicleAI {
         validDirections.add(Direction.NORTH);
         validDirections.add(Direction.SOUTH);
 
-        if (bikex > world.getWidth() - bike.getViewRange()) {
+        if (x > world.getWidth() - bike.getViewRange()) {
             validDirections.remove(Direction.EAST);
-        } else if (bikex < bike.getViewRange()) {
+        } else if (x < bike.getViewRange()) {
             validDirections.remove(Direction.WEST);
         }
 
-        if (bikey > world.getHeight() - bike.getViewRange()) {
+        if (y > world.getHeight() - bike.getViewRange()) {
             validDirections.remove(Direction.SOUTH);
-        } else if (bikey < bike.getViewRange()) {
+        } else if (y < bike.getViewRange()) {
             validDirections.remove(Direction.NORTH);
         }
-
+        System.out.println(x+"-"+y+"\n"+validDirections);
         return validDirections;
 
     }
@@ -71,9 +71,9 @@ public class BikeAI extends AbstractVehicleAI {
             if (randomNumber == 1) {
                 bike.accelerate();
             } else {
-                if (bike.getCurrentSpeed() > bike.getMinSpeed()) {
-                    bike.decelerate();
-                } else if (bike.getCurrentSpeed() == bike.getMinSpeed()) {
+                bike.decelerate();
+                
+                if (bike.getCurrentSpeed() == bike.getMinSpeed()) {
                     bike.changeDirection(validDirections);
                 }
             }

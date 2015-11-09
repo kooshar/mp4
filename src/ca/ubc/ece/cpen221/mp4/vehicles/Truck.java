@@ -1,5 +1,6 @@
 package ca.ubc.ece.cpen221.mp4.vehicles;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.swing.ImageIcon;
@@ -19,7 +20,7 @@ public class Truck implements Vehicles {
     private int MAX_SPEED=3;
     private int MIN_SPEED=1;
     private int ACCELERATION=1;
-    private int DECELERATION=1;
+    private int DECELERATION=2;
     private int STRENGTH=1000;
     private int VIEW_RANGE=5;
     private int COOLDOWN=3;
@@ -145,11 +146,12 @@ public class Truck implements Vehicles {
     }
 
     public void changeDirection(HashSet<Direction> validDirections) {
-        Direction previuosDirection = this.currentDirection;
-
-        while (currentDirection == previuosDirection && !validDirections.contains(currentDirection)) {
-            currentDirection = Util.getRandomDirection();
-        }
+        int randomNumber=(int)(Math.random()*(validDirections.size()));
+       
+        ArrayList<Direction> possibleDirections=new ArrayList<>();
+        possibleDirections.addAll(validDirections);
+        
+        this.currentDirection=possibleDirections.get(randomNumber);
     }
 
     @Override

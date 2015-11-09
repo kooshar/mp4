@@ -1,5 +1,6 @@
 package ca.ubc.ece.cpen221.mp4.vehicles;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.swing.ImageIcon;
@@ -145,11 +146,12 @@ public class Bagger288 implements Vehicles {
     }
 
     public void changeDirection(HashSet<Direction> validDirections) {
-        Direction previuosDirection = this.currentDirection;
-
-        while (currentDirection == previuosDirection && !validDirections.contains(currentDirection)) {
-            currentDirection = Util.getRandomDirection();
-        }
+        int randomNumber=(int)(Math.random()*(validDirections.size()));
+        
+        ArrayList<Direction> possibleDirections=new ArrayList<>();
+        possibleDirections.addAll(validDirections);
+        
+        this.currentDirection=possibleDirections.get(randomNumber);
     }
 
     @Override

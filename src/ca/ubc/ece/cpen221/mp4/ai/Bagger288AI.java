@@ -71,9 +71,9 @@ public class Bagger288AI extends AbstractVehicleAI {
             if (randomNumber == 1) {
                 bagger288.accelerate();
             } else {
-                if (bagger288.getCurrentSpeed() > bagger288.getMinSpeed()) {
-                    bagger288.decelerate();
-                } else if (bagger288.getCurrentSpeed() == bagger288.getMinSpeed()) {
+                bagger288.decelerate();
+
+                if (bagger288.getCurrentSpeed() == bagger288.getMinSpeed()) {
                     bagger288.changeDirection(validDirections);
                 }
             }
@@ -101,7 +101,8 @@ public class Bagger288AI extends AbstractVehicleAI {
 
         Set<Item> closeItems = world.searchSurroundings(passedLocation, bagger288.getCurrentSpeed());
 
-        for (int numberOfMoves = 0; numberOfMoves < bagger288.getCurrentSpeed() && !bagger288.isDead(); numberOfMoves++) {
+        for (int numberOfMoves = 0; numberOfMoves < bagger288.getCurrentSpeed()
+                && !bagger288.isDead(); numberOfMoves++) {
 
             Location newlocation = new Location(passedLocation, bagger288.getCurrentDirection());
 

@@ -53,10 +53,10 @@ public class TruckAI extends AbstractVehicleAI {
             validDirections.remove(Direction.WEST);
         }
 
-        if ( y>= world.getHeight() - truck.getViewRange()) {
+        if (y >= world.getHeight() - truck.getViewRange()) {
             validDirections.remove(Direction.SOUTH);
         } else if (y <= truck.getViewRange()) {
-            validDirections.remove(Direction.SOUTH);
+            validDirections.remove(Direction.NORTH);
         }
 
         return validDirections;
@@ -66,15 +66,13 @@ public class TruckAI extends AbstractVehicleAI {
     private void randomMovement(World world, Truck truck, HashSet<Direction> validDirections) {
         if (validDirections.contains(truck.getCurrentDirection())) {
             int randomNumber = ((int) (Math.random() * 100)) % 2;
-            System.out.println(truck.getLocation().getX()+""+truck.getLocation().getX());
-            System.out.println(truck.getCurrentDirection());
-            System.out.println(validDirections);
+
             if (randomNumber == 1) {
                 truck.accelerate();
             } else {
-                if (truck.getCurrentSpeed() > truck.getMinSpeed()) {
-                    truck.decelerate();
-                } else if (truck.getCurrentSpeed() == truck.getMinSpeed()) {
+                truck.decelerate();
+                
+                if (truck.getCurrentSpeed() == truck.getMinSpeed()) {
                     truck.changeDirection(validDirections);
                 }
             }
@@ -128,7 +126,6 @@ public class TruckAI extends AbstractVehicleAI {
         if (passedLocation.equals(startingLocation)) {
             return null;
         } else {
-            truck.moveTo(passedLocation);
             return passedLocation;
         }
     }
