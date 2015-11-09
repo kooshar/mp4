@@ -38,8 +38,8 @@ public class TruckAI extends AbstractVehicleAI {
     }
 
     private HashSet<Direction> getValidDirections(World world, Truck truck) {
-        int truckx = truck.getLocation().getX();
-        int trucky = truck.getLocation().getY();
+        int x = truck.getLocation().getX();
+        int y = truck.getLocation().getY();
 
         HashSet<Direction> validDirections = new HashSet<>();
         validDirections.add(Direction.EAST);
@@ -47,16 +47,16 @@ public class TruckAI extends AbstractVehicleAI {
         validDirections.add(Direction.NORTH);
         validDirections.add(Direction.SOUTH);
 
-        if (truckx > world.getWidth() - truck.getViewRange()) {
+        if (x > world.getWidth() - truck.getViewRange()) {
             validDirections.remove(Direction.EAST);
-        } else if (truckx < truck.getViewRange()) {
+        } else if (x < truck.getViewRange()) {
             validDirections.remove(Direction.WEST);
         }
 
-        if (trucky > world.getHeight() - truck.getViewRange()) {
+        if ( y>= world.getHeight() - truck.getViewRange()) {
             validDirections.remove(Direction.SOUTH);
-        } else if (trucky < truck.getViewRange()) {
-            validDirections.remove(Direction.NORTH);
+        } else if (y <= truck.getViewRange()) {
+            validDirections.remove(Direction.SOUTH);
         }
 
         return validDirections;
@@ -66,7 +66,9 @@ public class TruckAI extends AbstractVehicleAI {
     private void randomMovement(World world, Truck truck, HashSet<Direction> validDirections) {
         if (validDirections.contains(truck.getCurrentDirection())) {
             int randomNumber = ((int) (Math.random() * 100)) % 2;
-
+            System.out.println(truck.getLocation().getX()+""+truck.getLocation().getX());
+            System.out.println(truck.getCurrentDirection());
+            System.out.println(validDirections);
             if (randomNumber == 1) {
                 truck.accelerate();
             } else {
@@ -126,6 +128,7 @@ public class TruckAI extends AbstractVehicleAI {
         if (passedLocation.equals(startingLocation)) {
             return null;
         } else {
+            truck.moveTo(passedLocation);
             return passedLocation;
         }
     }
