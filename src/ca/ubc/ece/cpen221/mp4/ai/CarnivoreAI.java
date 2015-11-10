@@ -22,6 +22,9 @@ public class CarnivoreAI extends ArenaAnimalAI {
     
     private static final int ENERGYTRESHOLD = 0;
     private static final int BREEDTHRESHOLD = 10;
+    private static final double HISTERISIS = 0.1;
+    
+    private Direction previousDirection = Direction.NORTH;
     
     public CarnivoreAI(int energy) {
         super(energy);
@@ -53,13 +56,17 @@ public class CarnivoreAI extends ArenaAnimalAI {
         Item nearestPrey = null;
         for (Item item : edibleThings){
             
-            if (nearestPrey == null && animal.getLocation().getDistance(item.getLocation()) > 0){
+            if (nearestPrey == null &&
+               animal.getLocation().getDistance(item.getLocation()) > 0 &&
+               animal.getStrength() > item.getStrength()){
                 nearestPrey = item;
             }
             if (nearestPrey != null){
                 int dnearest = animal.getLocation().getDistance(nearestPrey.getLocation());
                 int dcandidate = animal.getLocation().getDistance(item.getLocation());
-                if (dnearest > dcandidate && animal.getLocation().getDistance(item.getLocation()) > 0){
+                if (dnearest > dcandidate && 
+                   animal.getLocation().getDistance(item.getLocation()) > 0 &&
+                   animal.getStrength() > item.getStrength()){
                     nearestPrey = item;
                 }
             }
@@ -85,10 +92,19 @@ public class CarnivoreAI extends ArenaAnimalAI {
 
             
             for(Direction d : directions){
+                previousDirection = d;
                 Location newLocation = new Location(animal.getLocation(),d);
                 if (Util.isValidLocation(world, newLocation) && ai.isLocationEmpty(world, animal, newLocation)){
                     return new MoveCommand(animal,newLocation);
                 }
+            }
+        }
+        
+        //move in same direction as before with given probability
+        if (Math.random() > HISTERISIS){
+            Location newLocation = new Location(animal.getLocation(),previousDirection);
+            if (Util.isValidLocation(world, newLocation) && ai.isLocationEmpty(world, animal, newLocation)){
+                return new MoveCommand(animal,newLocation);
             }
         }
         
@@ -97,6 +113,7 @@ public class CarnivoreAI extends ArenaAnimalAI {
             Direction direction = Util.getRandomDirection();
             Location newLocation = new Location(animal.getLocation(),direction);
             if (Util.isValidLocation(world, newLocation) && ai.isLocationEmpty(world, animal, newLocation)){
+                previousDirection = direction;
                 return new MoveCommand(animal,newLocation);
             }
         }

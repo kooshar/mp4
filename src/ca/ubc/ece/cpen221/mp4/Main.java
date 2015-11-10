@@ -25,8 +25,8 @@ import ca.ubc.ece.cpen221.mp4.vehicles.Truck;
  */
 public class Main {
 
-    static final int X_DIM = 40;
-    static final int Y_DIM = 40;
+    static final int X_DIM = 100;
+    static final int Y_DIM = 100;
     static final int SPACES_PER_GRASS = 7;
     static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
     static final int INITIAL_GNATS = INITIAL_GRASS / 4;
@@ -45,7 +45,7 @@ public class Main {
     static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
     static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
     static final int INITIAL_NUKES = 0;
-    static final int INITIAL_MINES = 0;
+    static final int INITIAL_MINES = 4;
     static final int INITIAL_FIRE_BOMBS = 0;
 
     public static void main(String[] args) {
