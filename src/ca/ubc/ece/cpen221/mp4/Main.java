@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 
 import ca.ubc.ece.cpen221.mp4.ai.*;
 import ca.ubc.ece.cpen221.mp4.bombs.Bomb;
+import ca.ubc.ece.cpen221.mp4.bombs.Mine;
 import ca.ubc.ece.cpen221.mp4.bombs.NuclearBomb;
 import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
@@ -41,7 +42,8 @@ public class Main {
     static final int INITIAL_MANS = INITIAL_GRASS / 150;
     static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
     static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
-    static final int INITIAL_NUKES = 1;
+    static final int INITIAL_NUKES = 0;
+    static final int INITIAL_MINES = 10;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -69,7 +71,8 @@ public class Main {
         addBagger288s(world);
         addBikes(world);
 
-        // addNukes(world);
+        addNukes(world);
+        addMines(world);
         // TODO: You may add your own creatures here!
     }
 
@@ -113,6 +116,15 @@ public class Main {
         for (int i = 0; i < INITIAL_NUKES; i++) {
             Location loc = Util.getRandomEmptyLocation(world);
             Bomb bomb = new NuclearBomb(Util.getRandomEmptyLocation(world), 20);
+            world.addItem(bomb);
+            world.addActor(bomb);
+        }
+    }
+    
+    private void addMines(World world) {
+        for (int i = 0; i < INITIAL_MINES; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            Bomb bomb = new Mine(Util.getRandomEmptyLocation(world));
             world.addItem(bomb);
             world.addActor(bomb);
         }

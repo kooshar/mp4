@@ -214,7 +214,7 @@ public final class Util {
 	public static double euclideanDistance(Location a, Location b){
 	    double deltaX = a.getX() - b.getX();
 	    double deltaY = a.getY() - b.getY();
-	    double out = Math.sqrt(deltaX*deltaX +deltaY*deltaY);
+	    double out = Math.sqrt(deltaX*deltaX + deltaY*deltaY);
         return out;   
 	}
 

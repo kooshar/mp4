@@ -22,7 +22,15 @@ public class BlowUpCommand implements Command {
     Location location;
     int radius;
     int damage;
-    
+    /**
+     * Instances a fresh blow up command
+     * 
+     * 
+     * @param location is a valid-non null location
+     * @param radius is a positive integer
+     * @param damage is an integer, positive numbers mean that the surrounding
+     * items take damage
+     */
     public BlowUpCommand(Location location, int radius, int damage){
         this.location = location;
         this.radius = radius;
@@ -36,7 +44,7 @@ public class BlowUpCommand implements Command {
         
         //select all items in the given blast radius
         for (Item item : items) {
-            if(Util.euclideanDistance(item.getLocation(), location) < radius);
+            if(Util.euclideanDistance(item.getLocation(), this.location) < radius)
                 targets.add(item);
         }
         
