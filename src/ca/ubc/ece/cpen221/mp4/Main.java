@@ -32,6 +32,7 @@ public class Main {
     static final int INITIAL_GNATS = INITIAL_GRASS / 4;
     static final int INITIAL_RABBITS = INITIAL_GRASS / 4;
     static final int INITIAL_FOXES = INITIAL_GRASS / 32;
+    static final int INITIAL_MOOSES= INITIAL_GRASS / 32;
     static final int INITIAL_TIGERS = INITIAL_GRASS / 32;
     static final int INITIAL_BEARS = INITIAL_GRASS / 40;
     static final int INITIAL_HYENAS = INITIAL_GRASS / 32;
@@ -66,14 +67,17 @@ public class Main {
         addGrass(world);
         world.addActor(new Gardener());
 
-        addGnats(world);
+        //addGnats(world);
         addRabbits(world);
         addFoxes(world);
+        
+        addMoose(world);
+        
         addTrucks(world);
         addBagger288s(world);
         addBikes(world);
 
-        addNukes(world);
+        //addNukes(world);
         addMines(world);
         addFireBombs(world);
     }
@@ -91,6 +95,16 @@ public class Main {
             Gnat gnat = new Gnat(loc);
             world.addItem(gnat);
             world.addActor(gnat);
+        }
+    }
+    
+    private void addMoose(World world) {
+        MooseAI mooseAI = new MooseAI();
+        for (int i = 0; i < INITIAL_MOOSES; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            Moose moose = new Moose(mooseAI,loc);
+            world.addItem(moose);
+            world.addActor(moose);
         }
     }
 
