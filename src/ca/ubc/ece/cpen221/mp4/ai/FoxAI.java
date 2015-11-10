@@ -21,16 +21,15 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
  */
 public class FoxAI extends AbstractAI {
 	private int closest = 2; // max number; greater than fox's view range
+	CarnivoreAI ai = new CarnivoreAI(0);
 
 	public FoxAI() {
-
+	    
 	}
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-		// TODO: Change this. Implement your own AI to make decisions regarding
-		// the next action.
-		return new WaitCommand();
+	        return ai.getNextAction(world, animal);
 	}
 
 }

@@ -20,7 +20,7 @@ public class FireBomb extends Bomb {
     private static final ImageIcon FIRE_IMAGE = Util.loadImage("Fire.gif");
     private static final int FIRE_BOMB_DAMAGE = 1;
     private static final int FIRE_BOMB_BLAST_RADIUS = 2;
-    private static final int FIRE_BOMB_STRENGTH = 10;
+    private static final int FIRE_BOMB_STRENGTH = 20;
     private static final int FIRE_BOMB_DURATION = 50;
     
     private boolean shouldBlowUp = false;
@@ -32,10 +32,11 @@ public class FireBomb extends Bomb {
 
     @Override
     public ImageIcon getImage() {
-        if (super.hasDetonated)
+        if (burntime > 0){
             return FIRE_IMAGE;
-        else
+        } else{
             return FIRE_BOMB_IMAGE;
+        }
     }
 
     @Override
@@ -51,6 +52,7 @@ public class FireBomb extends Bomb {
     @Override
     public void loseEnergy(int energy) {
         if (energy > FIRE_BOMB_STRENGTH){
+            System.out.println("bla");
             shouldBlowUp = true;
         }
             
@@ -60,7 +62,7 @@ public class FireBomb extends Bomb {
 
     @Override
     public boolean isDead() {
-        return false;
+        return super.hasDetonated;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class FireBomb extends Bomb {
         if (burntime == FIRE_BOMB_DURATION)
             super.hasDetonated = true;
             
-        if (shouldBlowUp = true && super.hasDetonated == false){
+        if (shouldBlowUp == true && super.hasDetonated == false){
             this.burntime++;
             return new BlowUpCommand(this.getLocation(),FIRE_BOMB_BLAST_RADIUS,FIRE_BOMB_DAMAGE);
         }

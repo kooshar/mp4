@@ -23,7 +23,9 @@ public class BlowUpCommand implements Command {
     int radius;
     int damage;
     /**
-     * Instances a fresh blow up command
+     * Instances a fresh blow up command that will call the
+     * lose energy function on anything within the euclidean radius
+     * and with an argument equal to the damage.
      * 
      * 
      * @param location is a valid-non null location
