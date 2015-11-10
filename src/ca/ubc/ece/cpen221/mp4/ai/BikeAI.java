@@ -59,7 +59,7 @@ public class BikeAI extends AbstractVehicleAI {
         } else if (y < bike.getViewRange()) {
             validDirections.remove(Direction.NORTH);
         }
-        System.out.println(x+"-"+y+"\n"+validDirections);
+       
         return validDirections;
 
     }
