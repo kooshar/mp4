@@ -22,7 +22,7 @@ public class Moose implements ArenaAnimal {
     private static final int STRENGTH = 300;
     private static final int MIN_BREEDING_ENERGY = 30;
     private static final int VIEW_RANGE = 5;
-    private static final int COOLDOWN = 2;
+    private static final int COOLDOWN = 1;
     private static final ImageIcon mooseImage = Util.loadImage("moose.gif");
 
     private final AI ai;
