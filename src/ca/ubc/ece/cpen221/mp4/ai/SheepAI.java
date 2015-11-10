@@ -17,13 +17,13 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * Your Rabbit AI.
+ * Your Sheep AI.
  */
-public class RabbitAI extends AbstractAI {
+public class SheepAI extends AbstractAI {
 
     private final int BREEDING_CONS = 5; 
 
-    public RabbitAI() {
+    public SheepAI() {
     }
 
     @Override
@@ -142,11 +142,9 @@ public class RabbitAI extends AbstractAI {
         }
         return emptySafeDirections;
     }
-    
 
     private Direction foodDirection(ArenaWorld world, ArenaAnimal animal,ArrayList<Direction> emptyDirections){
         //TODO: IMPLEMENT THIS METHOD
         return null;
     }
-
 }
