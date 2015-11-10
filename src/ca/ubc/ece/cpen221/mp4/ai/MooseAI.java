@@ -1,7 +1,6 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
@@ -16,17 +15,15 @@ import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
-import ca.ubc.ece.cpen221.mp4.items.animals.Fox;
-import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 
 /**
  * Your Rabbit AI.
  */
-public class RabbitAI extends AbstractAI {
+public class MooseAI extends AbstractAI {
 
-    private final int BREEDING_CONS = 5; 
+    private final int BREEDING_CONS = 3; 
 
-    public RabbitAI() {
+    public MooseAI() {
     }
 
     @Override
