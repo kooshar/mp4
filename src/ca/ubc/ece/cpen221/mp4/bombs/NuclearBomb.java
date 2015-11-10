@@ -18,7 +18,7 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 public class NuclearBomb extends Bomb {
     
     //TODO: change Image
-    private final ImageIcon NUCLEAR_BOMB_IMAGE = Util.loadImage("bear.gif");
+    private final ImageIcon NUCLEAR_BOMB_IMAGE = Util.loadImage("Nuke.gif");
     private static final int NUCLEAR_BOMB_DAMAGE = Integer.MAX_VALUE;
     private static final int NUCLEAR_BOMB_BLAST_RADIUS = Integer.MAX_VALUE;
     private int remainingFuse;

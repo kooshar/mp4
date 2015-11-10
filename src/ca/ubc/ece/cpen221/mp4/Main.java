@@ -42,7 +42,7 @@ public class Main {
     static final int INITIAL_MANS = INITIAL_GRASS / 150;
     static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
     static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
-    static final int INITIAL_NUKES = 0;
+    static final int INITIAL_NUKES = 1;
     static final int INITIAL_MINES = 10;
 
     public static void main(String[] args) {

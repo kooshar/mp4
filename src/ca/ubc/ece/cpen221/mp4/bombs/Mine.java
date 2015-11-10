@@ -10,18 +10,23 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 
+/**
+ * The mine is an item that issues a blow up command
+ * when an item with more strength than it does moves near it. 
+ * @author curtishuebner
+ */
 public class Mine extends Bomb {
     
     public Mine(Location location) {
         super(location);
     }
 
-    //TODO: change Image
-    private final ImageIcon MINE_IMAGE = Util.loadImage("bear.gif");
+    private final ImageIcon MINE_IMAGE = Util.loadImage("Mine.gif");
     private static final int MINE_DAMAGE = 100;
     private static final int MINE_BLAST_RADIUS = 4;
     private static final int MINE_STRENGTH = 10;
     private static final int  MINE_TRIGGER_DISTANCE = 2;
+    private boolean shouldBlowUp = false;
     
     @Override
     public ImageIcon getImage() {
@@ -41,6 +46,8 @@ public class Mine extends Bomb {
     @Override
     //mines don't lose energy
     public void loseEnergy(int energy) {
+        if (energy > MINE_STRENGTH)
+            shouldBlowUp = true;
     }
 
     @Override
@@ -51,7 +58,6 @@ public class Mine extends Bomb {
     @Override
     public Command getNextAction(World world) {
         Iterable<Item> items = world.getItems();
-        boolean shouldBlowUp = false;
         for (Item item : items){
             if (item.getStrength() > MINE_STRENGTH &&
                 this.getLocation().getDistance(item.getLocation()) < MINE_TRIGGER_DISTANCE){
