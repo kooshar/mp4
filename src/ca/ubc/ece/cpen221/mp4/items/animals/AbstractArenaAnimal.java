@@ -36,7 +36,11 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal { // abstract
 	public void eat(Food food) {
 		energy = Math.min(MAX_ENERGY, energy + food.getMeatCalories());
 	}
-
+	
+	protected void setAI(AI ai){
+	    this.ai = ai; 
+	}
+	
 	protected void setINITIAL_ENERGY(int i) {
 		this.INITIAL_ENERGY = i;
 	}
@@ -80,9 +84,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal { // abstract
 	}
 
 	@Override
-	public ImageIcon getImage() {
-		return image;
-	}
+	public abstract ImageIcon getImage();
 
 	@Override
 	public Location getLocation() {

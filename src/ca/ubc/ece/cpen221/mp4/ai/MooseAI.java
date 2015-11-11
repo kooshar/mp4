@@ -33,7 +33,6 @@ public class MooseAI extends AbstractAI {
         ArrayList<Direction> emptySafeDirections = emptySafeDirections(safeDirections, emptyDirections);
 
         if (safeDirections.size() == 4) {
-            System.out.println(4);
             if (getFood(world, animal) != null) {
                 return new EatCommand(animal, getFood(world, animal));
                 
@@ -52,7 +51,6 @@ public class MooseAI extends AbstractAI {
 
         } else {
             if (emptySafeDirections.size() != 0) {
-                System.out.println(0);
                 Direction randomDirection = emptySafeDirections.get((int) (Math.random() * emptySafeDirections.size()));
                 Location newLocation = new Location(animal.getLocation(), randomDirection);
                 return new MoveCommand(animal, newLocation);

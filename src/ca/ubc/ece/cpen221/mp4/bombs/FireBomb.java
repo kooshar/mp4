@@ -52,7 +52,6 @@ public class FireBomb extends Bomb {
     @Override
     public void loseEnergy(int energy) {
         if (energy > FIRE_BOMB_STRENGTH){
-            System.out.println("bla");
             shouldBlowUp = true;
         }
             
