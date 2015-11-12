@@ -17,21 +17,22 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * Your Rabbit AI.
+ * Your Sheep AI.
  */
-public class RabbitAI extends AbstractAI {
+public class SheepAI extends AbstractAI {
 
     private final int BREEDING_CONS = 5;
 
-    public RabbitAI() {
+    public SheepAI() {
     }
 
     @Override
     public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-        ArrayList<Direction> safeDirections = safeDirections(world, animal);
+        ArrayList<Direction> safeDirections = getSafeDirections(world, animal);
         ArrayList<Direction> emptyDirections = getEmptyDirections(world, animal);
         ArrayList<Direction> emptySafeDirections = getEmptySafeDirections(safeDirections, emptyDirections);
         Direction foodDirection = getFoodDirection(world, animal, emptyDirections);
+
 
         if (safeDirections.size() == 4) {
             if (getFood(world, animal) != null) {
@@ -70,7 +71,7 @@ public class RabbitAI extends AbstractAI {
 
     }
 
-    private ArrayList<Direction> safeDirections(ArenaWorld world, ArenaAnimal animal) {
+    private ArrayList<Direction> getSafeDirections(ArenaWorld world, ArenaAnimal animal) {
         ArrayList<Direction> safeDirections = new ArrayList<>();
 
         for (Direction direction : Direction.values()) {
@@ -83,7 +84,7 @@ public class RabbitAI extends AbstractAI {
 
         Set<Item> souroundingItems = world.searchSurroundings(animal);
         for (Item items : souroundingItems) {
-            if (items.getName().equals("Fox")) {
+            if (items.getName().equals("fox")) {
                 if (items.getLocation().getY() > animal.getLocation().getY()) {
                     safeDirections.remove(Direction.SOUTH);
                 } else {
@@ -151,7 +152,6 @@ public class RabbitAI extends AbstractAI {
     }
 
     private Direction getFoodDirection(ArenaWorld world, ArenaAnimal animal, ArrayList<Direction> emptyDirections) {
-        // TODO: IMPLEMENT THIS METHOD
         Set<Item> itemsAround = world.searchSurroundings(animal);
 
         for (Item item : itemsAround) {
@@ -174,5 +174,4 @@ public class RabbitAI extends AbstractAI {
         }
         return null;
     }
-
 }

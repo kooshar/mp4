@@ -205,11 +205,11 @@ public final class Util {
 	}
 	
 	/**
-	 * Returns the euclideanDistance between two locations
+	 * Returns the euclidean Distance between two locations
 	 * defined as the distance of the shortest line connecting two locations
 	 * @param Location a
 	 * @param Location b
-	 * @return the euclideanDistance
+	 * @return the euclidean distance between two locations. 
 	 */
 	public static double euclideanDistance(Location a, Location b){
 	    double deltaX = a.getX() - b.getX();

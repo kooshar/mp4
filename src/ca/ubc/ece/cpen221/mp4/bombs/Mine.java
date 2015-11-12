@@ -54,7 +54,11 @@ public class Mine extends Bomb {
     public boolean isDead() {
         return super.hasDetonated;
     }
-
+    
+    /**
+     * Returns a blowup command if an item is adjacent to the mine. 
+     * Returns a wait command otherwise
+     */
     @Override
     public Command getNextAction(World world) {
         Iterable<Item> items = world.getItems();

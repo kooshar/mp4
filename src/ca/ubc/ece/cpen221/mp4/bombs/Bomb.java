@@ -10,9 +10,8 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 
 
 /**
- * 
- * @author curtishuebner
- * The bomb class encompasses all bombs
+ * The bomb class is intended to encompasses all items that
+ * can produce a blow up command.
  */
 public abstract class Bomb implements Actor, Item {
     
@@ -23,6 +22,11 @@ public abstract class Bomb implements Actor, Item {
     //Bombs are not allowed to move
     private final Location location;
     
+    
+    /**
+     * Instances a bomb at the specified location. 
+     * @param location: the initial location of the bomb
+     */
     public Bomb(Location location){
         this.location = location;
     }

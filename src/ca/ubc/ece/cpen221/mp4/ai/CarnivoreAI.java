@@ -18,6 +18,12 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+
+/**
+ * The carnivore ai can be used as the ai of most carnivores.
+ * @author curtishuebner
+ *
+ */
 public class CarnivoreAI extends ArenaAnimalAI {
     
     private static final int ENERGYTRESHOLD = 0;
@@ -30,6 +36,13 @@ public class CarnivoreAI extends ArenaAnimalAI {
         super(energy);
     }
     
+    /*
+     * This is implementation of the fox at the very abstract level, it works by first
+     * checking to see if the animal should breed, then it looks for the nearest edible
+     * animal in range, if none are found, then the animal moves according to a drunkards
+     * walk pattern. The hysteresis coefficient determines how long the animal continues 
+     * to move in the same direction. 
+     */
     @Override
     public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
         
@@ -121,15 +134,23 @@ public class CarnivoreAI extends ArenaAnimalAI {
         return new WaitCommand();
     }
     /**
-     * returns the difference between a and b.
-     * @param a
-     * @param b
+     * returns the location that represents the vector difference
+     * between two locations.
+     * @param a is a non null location
+     * @param b is a non null location
      * @return
      */
     private static Location getDeltas(Location a, Location b){
-        return new Location(a.getX()-b.getX(), a.getY()-b.getY());
-        
+        return new Location(a.getX()-b.getX(), a.getY()-b.getY());   
     }
+    
+    
+    /**
+     * @param world is a non-null arena world
+     * @param animal is an animal inside the arena world
+     * @return an empty adjacent location to the animal if it exists,
+     * else the function returns null
+     */
     private static Location getEmptyAdjacentLocation(ArenaWorld world, ArenaAnimal animal) {
         int posX = animal.getLocation().getX();
         int posY = animal.getLocation().getY();

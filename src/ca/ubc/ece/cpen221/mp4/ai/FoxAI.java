@@ -26,7 +26,10 @@ public class FoxAI extends AbstractAI {
 	public FoxAI() {
 	    
 	}
-
+	
+	/**
+	 * The fox ai calls upon a carnivore AI to make decisions. 
+	 */
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 	        return ai.getNextAction(world, animal);

@@ -12,18 +12,18 @@ import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 /**
- * The {@link Moose} is an {@link ArenaAnimal} that eats {@link Grass} and can
+ * The {@link Sheep} is an {@link ArenaAnimal} that eats {@link Grass} and can
  * be eaten by {@link Fox}.
  */
-public class Moose implements ArenaAnimal {
+public class Sheep implements ArenaAnimal {
 
-    private static final int INITIAL_ENERGY = 90;
-    private static final int MAX_ENERGY = 300;
-    private static final int STRENGTH = 300;
+    private static final int INITIAL_ENERGY = 50;
+    private static final int MAX_ENERGY = 200;
+    private static final int STRENGTH = 100;
     private static final int MIN_BREEDING_ENERGY = 30;
-    private static final int VIEW_RANGE = 5;
-    private static final int COOLDOWN = 1;
-    private static final ImageIcon mooseImage = Util.loadImage("moose.gif");
+    private static final int VIEW_RANGE = 3;
+    private static final int COOLDOWN = 2;
+    private static final ImageIcon sheepImage = Util.loadImage("sheep.gif");
 
     private final AI ai;
 
@@ -31,24 +31,24 @@ public class Moose implements ArenaAnimal {
     private int energy;
 
     /**
-     * Create a new {@link Moose} with an {@link AI} at
+     * Create a new {@link Sheep} with an {@link AI} at
      * <code> initialLocation </code>. The <code> initialLoation
      * </code> must be valid and empty.
      *
-     * @param mooseAI
-     *            : The AI designed for moose
+     * @param sheepAI
+     *            : The AI designed for sheeps
      * @param initialLocation
-     *            : the location where this moose will be created
+     *            : the location where this sheep will be created
      */
-    public Moose(AI mooseAI, Location initialLocation) {
-        ai = mooseAI;
+    public Sheep(AI sheepAI, Location initialLocation) {
+        ai = sheepAI;
         location = initialLocation;
         energy = INITIAL_ENERGY;
     }
 
     @Override
     public LivingItem breed() {
-        Moose child = new Moose(ai, location);
+        Sheep child = new Sheep(ai, location);
         child.energy = energy / 2;
         this.energy = energy / 2;
         return child;
@@ -72,7 +72,7 @@ public class Moose implements ArenaAnimal {
 
     @Override
     public ImageIcon getImage() {
-        return mooseImage;
+        return sheepImage;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Moose implements ArenaAnimal {
 
     @Override
     public String getName() {
-        return "moose";
+        return "Sheep";
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Moose implements ArenaAnimal {
 
     @Override
     public int getPlantCalories() {
-        // This Moose is not a plant.
+        // This sheep is not a plant.
         return 0;
     }
 

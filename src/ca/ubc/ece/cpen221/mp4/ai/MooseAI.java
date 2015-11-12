@@ -21,36 +21,44 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
  */
 public class MooseAI extends AbstractAI {
 
-    private final int BREEDING_CONS = 3; 
+    private final int BREEDING_CONS = 3;
 
     public MooseAI() {
     }
 
     @Override
     public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-        ArrayList<Direction> safeDirections = safeDirections(world, animal);
-        ArrayList<Direction> emptyDirections = emptyDirections(world, animal);
-        ArrayList<Direction> emptySafeDirections = emptySafeDirections(safeDirections, emptyDirections);
+        ArrayList<Direction> safeDirections = getSafeDirections(world, animal);
+        ArrayList<Direction> emptyDirections = getEmptyDirections(world, animal);
+        ArrayList<Direction> emptySafeDirections = getEmptySafeDirections(safeDirections, emptyDirections);
+        Direction foodDirection = getFoodDirection(world, animal, emptyDirections);
 
         if (safeDirections.size() == 4) {
             if (getFood(world, animal) != null) {
                 return new EatCommand(animal, getFood(world, animal));
-                
-            } else if (animal.getEnergy() > BREEDING_CONS*animal.getMinimumBreedingEnergy() && breedingLocation(world, animal) != null) {
-                return new BreedCommand(animal, breedingLocation(world, animal));
+
+            } else if (animal.getEnergy() > BREEDING_CONS * animal.getMinimumBreedingEnergy()
+                    && getBreedingLocation(world, animal) != null) {
+                return new BreedCommand(animal, getBreedingLocation(world, animal));
+
+            } else if (foodDirection != null) {
+                Location newLocation = new Location(animal.getLocation(), foodDirection);
+                return new MoveCommand(animal, newLocation);
 
             } else if (emptyDirections.size() != 0) {
                 Direction randomDirection = emptyDirections.get((int) (Math.random() * emptyDirections.size()));
                 Location newLocation = new Location(animal.getLocation(), randomDirection);
                 return new MoveCommand(animal, newLocation);
-
             } else {
                 return new WaitCommand();
 
             }
 
         } else {
-            if (emptySafeDirections.size() != 0) {
+            if (getFood(world, animal) != null) {
+                return new EatCommand(animal, getFood(world, animal));
+
+            } else if (emptySafeDirections.size() != 0) {
                 Direction randomDirection = emptySafeDirections.get((int) (Math.random() * emptySafeDirections.size()));
                 Location newLocation = new Location(animal.getLocation(), randomDirection);
                 return new MoveCommand(animal, newLocation);
@@ -62,7 +70,7 @@ public class MooseAI extends AbstractAI {
 
     }
 
-    private ArrayList<Direction> safeDirections(ArenaWorld world, ArenaAnimal animal) {
+    private ArrayList<Direction> getSafeDirections(ArenaWorld world, ArenaAnimal animal) {
         ArrayList<Direction> safeDirections = new ArrayList<>();
 
         for (Direction direction : Direction.values()) {
@@ -93,7 +101,7 @@ public class MooseAI extends AbstractAI {
         return safeDirections;
     }
 
-    private ArrayList<Direction> emptyDirections(ArenaWorld world, ArenaAnimal animal) {
+    private ArrayList<Direction> getEmptyDirections(ArenaWorld world, ArenaAnimal animal) {
         ArrayList<Direction> emptyDirections = new ArrayList<>();
 
         for (Direction direction : Direction.values()) {
@@ -107,7 +115,7 @@ public class MooseAI extends AbstractAI {
         return emptyDirections;
     }
 
-    private Location breedingLocation(ArenaWorld world, ArenaAnimal animal) {
+    private Location getBreedingLocation(ArenaWorld world, ArenaAnimal animal) {
         for (Direction direction : Direction.values()) {
             Location newLocation = new Location(animal.getLocation(), direction);
 
@@ -130,7 +138,7 @@ public class MooseAI extends AbstractAI {
         return null;
     }
 
-    private ArrayList<Direction> emptySafeDirections(ArrayList<Direction> safeDirections,
+    private ArrayList<Direction> getEmptySafeDirections(ArrayList<Direction> safeDirections,
             ArrayList<Direction> emptyDirections) {
         ArrayList<Direction> emptySafeDirections = new ArrayList<>();
 
@@ -142,4 +150,27 @@ public class MooseAI extends AbstractAI {
         return emptySafeDirections;
     }
 
+    private Direction getFoodDirection(ArenaWorld world, ArenaAnimal animal, ArrayList<Direction> emptyDirections) {
+        Set<Item> itemsAround = world.searchSurroundings(animal);
+
+        for (Item item : itemsAround) {
+            if (item.getName().equals("grass")) {
+                int itemX = item.getLocation().getX();
+                int itemY = item.getLocation().getY();
+
+                if (itemX > animal.getLocation().getX() && emptyDirections.contains(Direction.EAST)) {
+                    return Direction.EAST;
+                } else if (itemX < animal.getLocation().getX() && emptyDirections.contains(Direction.WEST)) {
+                    return Direction.WEST;
+                }
+
+                if (itemY > animal.getLocation().getY() && emptyDirections.contains(Direction.SOUTH)) {
+                    return Direction.SOUTH;
+                } else if (itemY < animal.getLocation().getY() && emptyDirections.contains(Direction.NORTH)) {
+                    return Direction.NORTH;
+                }
+            }
+        }
+        return null;
+    }
 }
