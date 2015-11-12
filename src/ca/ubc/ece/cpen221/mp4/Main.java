@@ -30,7 +30,7 @@ public class Main {
     static final int SPACES_PER_GRASS = 7;
     static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
     static final int INITIAL_GNATS = INITIAL_GRASS / 4;
-    static final int INITIAL_RABBITS = INITIAL_GRASS / 4;
+    static final int INITIAL_RABBITS = INITIAL_GRASS / 8;
     static final int INITIAL_FOXES = INITIAL_GRASS / 32;
     static final int INITIAL_MOOSES= INITIAL_GRASS / 32;
     static final int INITIAL_SHEEPS= INITIAL_GRASS / 32;

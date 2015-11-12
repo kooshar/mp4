@@ -5,8 +5,11 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 import ca.ubc.ece.cpen221.mp4.vehicles.Vehicles;
 
+/**
+ *The Vehicle AI.
+ */
 public interface VehicleAI {
-
+    
     public Command getNextAction(ArenaWorld world, Vehicles vehicle);
 
 }

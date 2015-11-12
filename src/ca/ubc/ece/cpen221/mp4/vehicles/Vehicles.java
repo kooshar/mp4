@@ -7,6 +7,8 @@
  */
 package ca.ubc.ece.cpen221.mp4.vehicles;
 
+import java.util.HashSet;
+
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.items.MoveableItem;
@@ -73,7 +75,7 @@ public interface Vehicles extends MoveableItem, Actor {
     void accelerate();
 
     /**
-     * subtracts one Dceleration from the current speed that the vehicle is
+     * subtracts one Deceleration from the current speed that the vehicle is
      * moving with if the vehicle is going with a speed more than 1
      *
      * @modifies the current moving speed
@@ -90,5 +92,12 @@ public interface Vehicles extends MoveableItem, Actor {
      * @return the view range of this animal
      */
     int getViewRange();
-
+    
+    /**
+     * Returns a random direction from the validDirections. validDirections
+     * should not be empty
+     * 
+     * @param validDirections the valid directions to choose from
+     */
+    public void changeDirection(HashSet<Direction> validDirections);
 }

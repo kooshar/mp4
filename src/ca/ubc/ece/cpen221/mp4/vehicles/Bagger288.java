@@ -144,7 +144,8 @@ public class Bagger288 implements Vehicles {
     public int getCoolDownPeriod() {
         return COOLDOWN;
     }
-
+    
+    @Override
     public void changeDirection(HashSet<Direction> validDirections) {
         int randomNumber=(int)(Math.random()*(validDirections.size()));
         
