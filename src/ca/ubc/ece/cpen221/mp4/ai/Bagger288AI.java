@@ -13,7 +13,6 @@ import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.vehicles.Bagger288;
-import ca.ubc.ece.cpen221.mp4.vehicles.Truck;
 import ca.ubc.ece.cpen221.mp4.vehicles.Vehicles;
 
 public class Bagger288AI extends AbstractVehicleAI {
@@ -37,14 +36,16 @@ public class Bagger288AI extends AbstractVehicleAI {
             return new MoveCommand(bagger288, newLocation);
         }
     }
-    
+
     /**
-     * Return the HashSet of valid direction for the vehicle to choose from(directions 
-     * that are not that close to the walls and allow for a safe turn around before a 
-     * hit)
+     * Return the HashSet of valid direction for the vehicle to choose
+     * from(directions that are not that close to the walls and allow for a safe
+     * turn around before a hit)
      * 
-     * @param world the world where the vehicle is located
-     * @param bagger288 the vehicle 
+     * @param world
+     *            the world where the vehicle is located
+     * @param bagger288
+     *            the vehicle
      * @return the HashSeet of valid Directions
      */
     private HashSet<Direction> getValidDirections(World world, Bagger288 bagger288) {
@@ -72,15 +73,18 @@ public class Bagger288AI extends AbstractVehicleAI {
         return validDirections;
 
     }
-    
+
     /**
-     * decides a movement for the vehicle. the movement can be either acceleration
-     * deceleration or change in the direction of speed depending on the speed an where
-     * the object is located in the world
+     * decides a movement for the vehicle. the movement can be either
+     * acceleration deceleration or change in the direction of speed depending
+     * on the speed an where the object is located in the world
      * 
-     * @param world the world where the vehicle is located
-     * @param bagger288 the vehicle to choose a movement for
-     * @param validDirections directions that are not close to the wall
+     * @param world
+     *            the world where the vehicle is located
+     * @param bagger288
+     *            the vehicle to choose a movement for
+     * @param validDirections
+     *            directions that are not close to the wall
      */
     private void randomMovement(World world, Bagger288 bagger288, HashSet<Direction> validDirections) {
         if (validDirections.contains(bagger288.getCurrentDirection())) {
@@ -109,10 +113,12 @@ public class Bagger288AI extends AbstractVehicleAI {
      * kills all the animals in the way of the vehicle if it is stronger or will
      * destroy the vehicle if it is hit by a stronger animal
      * 
-     * @param world the world where the vehicle is located
-     * @param truck the vehicle 
+     * @param world
+     *            the world where the vehicle is located
+     * @param truck
+     *            the vehicle
      * @return null if the vehicle is dead or the location of the vehicle if the
-     * move is successful.
+     *         move is successful.
      */
     private Location runover(World world, Bagger288 bagger288) {
         Location passedLocation = bagger288.getLocation();

@@ -108,10 +108,12 @@ public class TruckAI extends AbstractVehicleAI {
      * kills all the animals in the way of the vehicle if it is stronger or will
      * destroy the vehicle if it is hit by a stronger animal
      * 
-     * @param world the world where the vehicle is located
-     * @param truck the vehicle 
+     * @param world
+     *            the world where the vehicle is located
+     * @param truck
+     *            the vehicle
      * @return null if the vehicle is dead or the location of the vehicle if the
-     * move is successful.
+     *         move is successful.
      */
     private Location runover(World world, Truck truck) {
         Location passedLocation = truck.getLocation();
