@@ -25,8 +25,8 @@ import ca.ubc.ece.cpen221.mp4.vehicles.Truck;
  */
 public class Main {
 
-    static final int X_DIM = 100;
-    static final int Y_DIM = 100;
+    static final int X_DIM = 40;
+    static final int Y_DIM = 40;
     static final int SPACES_PER_GRASS = 7;
     static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
     static final int INITIAL_GNATS = INITIAL_GRASS / 4;
@@ -71,6 +71,7 @@ public class Main {
         //addGnats(world);
         addRabbits(world);
         addFoxes(world);
+        addTigers(world);
         
         addMoose(world);
         addSheeps(world);
@@ -110,6 +111,16 @@ public class Main {
         }
     }
     
+    private void addTigers(World world) {
+        CarnivoreAI ai = new CarnivoreAI(0);
+        for (int i = 0; i < INITIAL_TIGERS; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            Tiger tiger = new Tiger(ai, loc);
+
+            world.addItem(tiger);
+            world.addActor(tiger);
+        }
+    }
     private void addSheeps(World world) {
         SheepAI sheepAI = new SheepAI();
         for (int i = 0; i < INITIAL_SHEEPS; i++) {
@@ -143,7 +154,6 @@ public class Main {
 
     private void addNukes(World world) {
         for (int i = 0; i < INITIAL_NUKES; i++) {
-            Location loc = Util.getRandomEmptyLocation(world);
             Bomb bomb = new NuclearBomb(Util.getRandomEmptyLocation(world), 20);
             world.addItem(bomb);
             world.addActor(bomb);
@@ -152,7 +162,6 @@ public class Main {
     
     private void addMines(World world) {
         for (int i = 0; i < INITIAL_MINES; i++) {
-            Location loc = Util.getRandomEmptyLocation(world);
             Bomb bomb = new Mine(Util.getRandomEmptyLocation(world));
             world.addItem(bomb);
             world.addActor(bomb);
@@ -161,7 +170,6 @@ public class Main {
     
     private void addFireBombs(World world) {
         for (int i = 0; i < INITIAL_FIRE_BOMBS; i++) {
-            Location loc = Util.getRandomEmptyLocation(world);
             Bomb bomb = new FireBomb(Util.getRandomEmptyLocation(world));
             world.addItem(bomb);
             world.addActor(bomb);

@@ -18,10 +18,10 @@ public class FireBomb extends Bomb {
     
     private static final ImageIcon FIRE_BOMB_IMAGE = Util.loadImage("Mine.gif");
     private static final ImageIcon FIRE_IMAGE = Util.loadImage("Fire.gif");
-    private static final int FIRE_BOMB_DAMAGE = 1;
-    private static final int FIRE_BOMB_BLAST_RADIUS = 2;
-    private static final int FIRE_BOMB_STRENGTH = 20;
-    private static final int FIRE_BOMB_DURATION = 50;
+    private static final int FIRE_BOMB_DAMAGE = 1; //Damage per turn
+    private static final int FIRE_BOMB_BLAST_RADIUS = 2; //Area of effect
+    private static final int FIRE_BOMB_STRENGTH = 20; //Strength of the Fire-Bomb
+    private static final int FIRE_BOMB_DURATION = 50; //Duration of the burning effect. 
     
     private boolean shouldBlowUp = false;
     private int burntime = 0;
@@ -52,7 +52,6 @@ public class FireBomb extends Bomb {
     @Override
     public void loseEnergy(int energy) {
         if (energy > FIRE_BOMB_STRENGTH){
-            System.out.println("bla");
             shouldBlowUp = true;
         }
             
@@ -66,11 +65,11 @@ public class FireBomb extends Bomb {
     }
 
     @Override
-    /*
+    /**
      * Burning is simulated by issuing several blow up commands in series with small parameters
      * The duration is kept track of by incrementing the burntime variable
      * (non-Javadoc)
-     * @see ca.ubc.ece.cpen221.mp4.bombs.Bomb#getNextAction(ca.ubc.ece.cpen221.mp4.World)
+     * 
      */
     public Command getNextAction(World world) {
         if (burntime == FIRE_BOMB_DURATION)

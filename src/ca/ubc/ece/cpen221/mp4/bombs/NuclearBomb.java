@@ -17,7 +17,6 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
  */
 public class NuclearBomb extends Bomb {
     
-    //TODO: change Image
     private final ImageIcon NUCLEAR_BOMB_IMAGE = Util.loadImage("Nuke.gif");
     private static final int NUCLEAR_BOMB_DAMAGE = Integer.MAX_VALUE;
     private static final int NUCLEAR_BOMB_BLAST_RADIUS = Integer.MAX_VALUE;
@@ -52,7 +51,10 @@ public class NuclearBomb extends Bomb {
     public boolean isDead() {
         return super.hasDetonated;
     }
-
+    
+    /**
+     * Issues a blow up command that destroys everything in the world. 
+     */
     @Override
     public Command getNextAction(World world) {
         this.remainingFuse--;

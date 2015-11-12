@@ -31,7 +31,7 @@ public class BlowUpCommand implements Command {
      * @param location is a valid-non null location
      * @param radius is a positive integer
      * @param damage is an integer, positive numbers mean that the surrounding
-     * items take damage
+     * items lose energy
      */
     public BlowUpCommand(Location location, int radius, int damage){
         this.location = location;
